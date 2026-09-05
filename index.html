@@ -87,6 +87,11 @@
   .t .a{font-size:16px;color:var(--ink);margin:0;line-height:1.72}
   .t .a .lab{color:var(--bad);font-weight:800}
   .t.w .a .lab{color:var(--warn)}
+  .grp{font-size:14px;font-weight:800;letter-spacing:.04em;color:var(--accent);
+    margin:20px 0 4px;padding-bottom:6px;border-bottom:2px solid var(--line);text-transform:uppercase}
+  .grp:first-child{margin-top:0}
+  .t.info{border-left-color:var(--accent)}
+  .t.info .a .lab{color:var(--accent)}
 
   .tw{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px}
   table{border-collapse:collapse;width:100%;background:var(--surface);font-size:16px}
@@ -126,7 +131,7 @@
         </button>
         <button class="tile danger" onclick="go('trouble')">
           <span class="ic">⚠️</span>
-          <span class="tx"><p class="tt">안 될 때 (오류 해결)</p><p class="ds">스캔 안 됨 · 창고에 없음 · 버튼 잠김</p></span>
+          <span class="tx"><p class="tt">안 될 때 (오류 해결)</p><p class="ds">이전 로트 · 재고부족 · 창고에 없음 · 스캔 안 됨</p></span>
           <span class="arw">›</span>
         </button>
         <button class="tile" onclick="go('ref')">
@@ -184,16 +189,37 @@
 
   <section class="view" id="trouble" data-title="안 될 때 (오류 해결)">
     <div class="pad"><div class="tlist">
+
+      <p class="grp">🔄 가동중 오류·경고</p>
+      <div class="t info"><p class="q">“이전 로트가 있습니다” (선입선출·FIFO)</p>
+        <p class="a"><span class="lab">뜻 —</span> 먼저 들어온 <b>오래된 로트</b> 가 아직 남아 있습니다.<br>
+        <span class="lab">하세요 —</span> <b>오래된 로트(먼저 입고분)부터</b> 투입·사용하세요. 새 로트를 먼저 쓰면 이 경고가 뜹니다.</p></div>
+      <div class="t info"><p class="q">“이미 투입된 로트입니다” (중복 스캔)</p>
+        <p class="a"><span class="lab">뜻 —</span> 같은 로트를 두 번 스캔했습니다.<br>
+        <span class="lab">하세요 —</span> 그건 이미 됐으니 <b>다음 자재</b> 를 스캔하세요.</p></div>
+      <div class="t info"><p class="q">“재고(잔량)가 부족합니다”</p>
+        <p class="a"><span class="lab">뜻 —</span> 그 로트의 남은 수량이 필요량보다 적습니다.<br>
+        <span class="lab">하세요 —</span> <b>다른 로트를 추가로 스캔</b> 하거나 재고 담당에게 확인하세요.</p></div>
+      <div class="t info"><p class="q">“지시수량을 초과했습니다”</p>
+        <p class="a"><span class="lab">뜻 —</span> 양품 등록 수량이 지시수량보다 많습니다.<br>
+        <span class="lab">하세요 —</span> <b>수량을 다시 확인</b> 하고 맞게 입력하세요.</p></div>
+
+      <p class="grp">📦 투입·시작 오류</p>
       <div class="t"><p class="q">“창고에 존재하지 않는 바코드입니다”</p>
         <p class="a"><span class="lab">원인 —</span> 자재가 라인 창고(권선)에 없음. 이동만 하고 <b>인수(수령)</b> 를 안 했거나 재고가 없는 경우입니다.<br>
         <span class="lab">해결 —</span> 이동전표를 <b>인수</b> 처리한 뒤 스캔, 또는 재고 담당에게 확인. 품번만 스캔한 경우도 이 오류이니 <b>로트 바코드</b> 로 스캔하세요.</p></div>
       <div class="t"><p class="q">“BOM에 없습니다”</p>
         <p class="a"><span class="lab">원인 —</span> 스캔한 자재가 이 작업지시의 구성품이 아닙니다.<br>
         <span class="lab">해결 —</span> 화면 BOM 목록에 있는 자재만 투입하세요.</p></div>
-      <div class="t w"><p class="q">스캔하면 “삑” 소리만 나고 값이 안 들어감</p>
-        <p class="a"><span class="lab">해결 순서 —</span> ① 입력칸을 <b>클릭</b> 해 커서 확인 → ② <b>한/영을 영문</b> 으로 → ③ 스캐너 <b>USB 케이블 재장착·교체</b> → ④ 그래도 안 되면 설비 담당에게 요청.</p></div>
       <div class="t w"><p class="q">양품 · 인쇄 버튼이 안 눌림</p>
         <p class="a"><span class="lab">해결 —</span> <b>작업자 가동 → 시작</b> 을 먼저 하세요. 인쇄는 <b>양품(실적)을 등록한 뒤</b> 가능합니다.</p></div>
+
+      <p class="grp">🔌 스캐너·기타</p>
+      <div class="t w"><p class="q">스캔하면 “삑” 소리만 나고 값이 안 들어감</p>
+        <p class="a"><span class="lab">해결 순서 —</span> ① 입력칸을 <b>클릭</b> 해 커서 확인 → ② <b>한/영을 영문</b> 으로 → ③ 스캐너 <b>USB 케이블 재장착·교체</b> → ④ 그래도 안 되면 설비 담당에게 요청.</p></div>
+      <div class="t w"><p class="q">제품 라벨이 안 나옴</p>
+        <p class="a"><span class="lab">확인 —</span> ① <b>양품을 먼저 등록</b>(총작업수량 0이면 인쇄 안 됨) → ② 프린터 <b>용지·전원·연결</b> 확인 → ③ 인쇄 <b>배율 100%</b>.</p></div>
+
     </div></div>
   </section>
 

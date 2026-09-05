@@ -100,6 +100,19 @@
   tr:last-child td{border-bottom:none}
   td:first-child{white-space:nowrap}
 
+  /* 참고 섹션 카드형 (줄바꿈 안정) */
+  .deflist{display:grid;gap:10px}
+  .dl{display:flex;gap:13px;align-items:center;background:var(--surface);border:1px solid var(--line);
+    border-radius:13px;padding:13px 15px;box-shadow:var(--shadow)}
+  .dl code{flex:none;font-size:15px}
+  .dl span{font-size:16.5px;line-height:1.55}
+  .lotcards{display:grid;gap:11px}
+  .lot{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:13px 15px;box-shadow:var(--shadow)}
+  .lot .lt{display:inline-block;font-size:13.5px;font-weight:800;color:var(--accent);
+    background:var(--accent-soft);border-radius:7px;padding:3px 11px;margin-bottom:9px}
+  .lot code.big{display:block;font-size:16px;padding:9px 11px;line-height:1.55;
+    overflow-wrap:anywhere;word-break:break-all;background:var(--surface-2);border-radius:8px}
+
   footer{color:var(--muted);font-size:14px;text-align:center;padding:26px 18px 36px}
 </style>
 
@@ -225,15 +238,19 @@
 
   <section class="view" id="ref" data-title="창고 · 바코드 참고">
     <div class="pad">
-      <div class="tw"><table><thead><tr><th>창고</th><th>용도</th></tr></thead><tbody>
-        <tr><td><code>SL004</code></td><td>권선(생산3팀) — 라인 투입 창고</td></tr>
-        <tr><td><code>SL301</code></td><td>원자재창고 — 입고·보관</td></tr>
-      </tbody></table></div>
-      <div class="tw"><table><thead><tr><th>로트 형식</th><th>예시</th></tr></thead><tbody>
-        <tr><td>구매품 (C…)</td><td><code>C9046321200024-2609016101</code></td></tr>
-        <tr><td>생산품 (TD…)</td><td><code>TD20260904D011-0010</code></td></tr>
-      </tbody></table></div>
-      <div class="msg warn"><span class="h">바코드는 Code39</span>Code39 형식으로 출력해야 현장 스캐너가 읽습니다. 인쇄는 <b>배율 100%</b>(축소 금지)로 하세요.</div>
+      <p class="grp">🏭 창고</p>
+      <div class="deflist">
+        <div class="dl"><code>SL004</code><span>권선(생산3팀) — 라인 투입 창고</span></div>
+        <div class="dl"><code>SL301</code><span>원자재창고 — 입고·보관</span></div>
+      </div>
+
+      <p class="grp">🏷️ 로트(바코드) 형식</p>
+      <div class="lotcards">
+        <div class="lot"><span class="lt">구매품</span><code class="big">C9046321200024-2609016101</code></div>
+        <div class="lot"><span class="lt">생산품</span><code class="big">TD20260904D011-0010</code></div>
+      </div>
+
+      <div class="msg warn" style="margin-top:16px"><span class="h">바코드는 Code39</span>Code39 형식으로 출력해야 현장 스캐너가 읽습니다. 인쇄는 <b>배율 100%</b>(축소 금지)로 하세요.</div>
       <div class="card" style="margin-top:14px">
         <p style="margin:0;font-size:17px"><b>창고 이동은 2단계입니다.</b></p>
         <p style="margin:8px 0 0;font-size:16px">① 출고(이동전표 생성) → ② <b>인수</b>(라인에서 수령확인).<br>인수를 해야 라인 창고(SL004)에 잡혀 투입 스캔이 됩니다.</p>
